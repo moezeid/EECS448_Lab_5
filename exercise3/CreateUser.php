@@ -14,7 +14,7 @@ if($mysqli->connect_error){
 
     }
 
-      $u_idQuery = "SELECT user_id FROM User WHERE user_id ='$u_id'";
+      $u_idQuery = "SELECT user_id FROM User WHERE user_id = $u_id";
       $contentQuery = "INSERT INTO Posts (author_id, content) VALUES ('$u_id', '$content')";
 
     if($mysqli->query($u_idQuery) == TRUE){
@@ -40,7 +40,7 @@ if($mysqli->connect_error){
 
     }//end else
 
-      
+
 $mysqli->close();
 
 ?>
