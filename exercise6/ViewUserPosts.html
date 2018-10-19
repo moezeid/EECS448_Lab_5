@@ -4,45 +4,36 @@
 </head>
 
 <h1> Message Board--View User Posts: </h1> <br>
-
-
+<form action="ViewUserPosts.php"  method = 'post' >
+<select name="dropDown" id="dropDown">
 <?php
-
 
 $mysqli = new mysqli("mysql.eecs.ku.edu", "m113z398", "peachfuzz", "m113z398");
 
 /* check connection */
 if($mysqli->connect_error){
     die("Connection failed: " . $mysqli->connect_error);
-
-
-
-    }
+  }
 
 $query = "SELECT user_id FROM User ORDER by user_id";
 
 if ($result = $mysqli->query($query)) {
 
-
-
     /* fetch associative array */
-    echo "<select>";
+
     while ($row = $result->fetch_assoc()) {
         echo "<option value=$row[user_id]> $row[user_id] </option>";
 
     }
 
-
-
-
     $result->free();
 }
-
-
 $mysqli->close();
-
 ?>
 
+</select>
+<button type= "submit">Submit</button> </div> <br>
+</form>
 <body>
 
 
