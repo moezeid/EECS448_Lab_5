@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+
+<h1> Message Board--Delete User Posts: </h1> <br>
+
+<body>
+<form id="form" action="DeletePost.php" method="post">
+  <style>
+  table, tr, td {
+  border: 1px solid black;
+  padding: 15px;
+  font-family: serif;
+    }
+
+</style>
+<table>
+  <tr>
+    <th> Delete </th>
+    <th> Author </th>
+    <th> Post Content </th>
+  </tr>
+<?php
+
+  $mysqli = new mysqli("mysql.eecs.ku.edu", "m113z398", "peachfuzz", "m113z398");
+
+  if($mysqli->connect_error){
+      die("Connection failed: " . $mysqli->connect_error);
+      }
+
+
+$postQuery = "SELECT * FROM Posts";
+
+
+    if ($result = $mysqli->query($postQuery)) {
+
+
+        while ($row = $result->fetch_assoc()) {
+            $number = $row['post_id'];
+
+            echo '<tr><td><input type="checkbox" name="whichOne[]" value=" ' . $number . ' "></td>  <td>' . $row['author_id'] . '</td> <td>' . $row[content] . '</td> </tr>';
+
+        }
+
+
+  }
+$result->free();
+$mysqli->close();
+?>
+</table>
+<button type="submit">Submit </button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
